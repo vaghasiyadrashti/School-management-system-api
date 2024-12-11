@@ -1,4 +1,4 @@
-const { addSchool, listSchools , deleteSchool } = require('../models/school.models.js');
+const { addSchool, listSchools, deleteSchool } = require('../models/school.models.js');
 const mySqlPool = require('../db.js');
 
 // Add a new school
@@ -19,21 +19,28 @@ const addSchoolController = async (req, res) => {
     }
 
     try {
-        await addSchool(name, address, latitude, longitude);
+        // Check if the school already exists by name and address
         const checkQuery = "SELECT * FROM schools WHERE name = ? AND address = ?";
         const [existingSchool] = await mySqlPool.query(checkQuery, [name, address]);
 
         if (existingSchool.length > 0) {
-            res.status(500).json({message:"School with the same name and address already exists."});
+            return res.status(400).json({ message: "School with the same name and address already exists." });
         }
 
         // Insert the new school if no duplicates exist
         const insertQuery = "INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)";
         const [result] = await mySqlPool.query(insertQuery, [name, address, latitude, longitude]);
-        return res.status(200).json({message: "School added successfully.."});
+        
+        // Check if the school was added successfully
+        if (result.affectedRows > 0) {
+            return res.status(200).json({ message: "School added successfully" });
+        }
+
+        return res.status(500).json({ message: "Error adding the school" });
+
     } catch (err) {
         console.error("Error adding school:", err);
-        res.status(500).json({ message: "Error Occured at adding school" });
+        res.status(500).json({ message: "Error Occurred while adding school" });
     }
 };
 
@@ -55,7 +62,7 @@ const listSchoolsController = async (req, res) => {
         res.status(200).json(schools);
     } catch (err) {
         console.error("Error fetching schools:", err);
-        res.status(500).json({ message: "Error occured at fetching results" });
+        res.status(500).json({ message: "Error occurred while fetching results" });
     }
 };
 
@@ -79,7 +86,6 @@ const deleteSchoolController = async (req, res) => {
         res.status(500).json({ message: `Error deleting school: ${error.message}` });
     }
 };
-
 
 module.exports = {
     addSchoolController,
