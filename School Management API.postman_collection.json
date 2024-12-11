@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "46e69e05-453b-45cd-ac7c-b0e8ae302eb8",
+		"name": "School Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33698143"
+	},
+	"item": [
+		{
+			"name": "addSchool",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Schoool Himesh\",\r\n  \"address\": \"Faridabad\",\r\n  \"latitude\": 84.898791,\r\n  \"longitude\": -33.935249\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://school-management-system-6jeg.onrender.com/api/addSchool",
+					"protocol": "https",
+					"host": [
+						"school-management-system-6jeg",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"addSchool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listSchool",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
