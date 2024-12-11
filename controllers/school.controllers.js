@@ -40,10 +40,9 @@ const addSchoolController = async (req, res) => {
 
     } catch (err) {
         console.error("Error adding school:", err);
-        res.status(500).json({ message: "Error Occurred while adding school" });
+        return res.status(500).json({ message: `Error occurred while adding school: ${err.message}` });
     }
 };
-
 // List all schools sorted by proximity
 const listSchoolsController = async (req, res) => {
     const { latitude, longitude } = req.query;
