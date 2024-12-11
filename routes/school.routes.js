@@ -1,5 +1,5 @@
 const express = require('express');
-const { addSchoolController, listSchoolsController, deleteSchoolController  } = require('../controllers/school.controllers.js');
+const { addSchoolController, listSchoolsController } = require('../controllers/school.controllers.js');
 
 const router = express.Router();
 
@@ -9,7 +9,5 @@ router.post('/addSchool', addSchoolController);
 // List schools sorted by proximity
 router.get('/listSchools', listSchoolsController);
 
-// Delete school with id
-router.delete("/deleteSchool/:id", deleteSchoolController);
 
 module.exports = router;
