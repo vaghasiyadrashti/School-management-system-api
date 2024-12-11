@@ -20,3 +20,23 @@ The API uses Express.js for routing, MySQL as the database, and follows a RESTfu
 
    ```bash
    git clone https://github.com/vaghasiyadrashti/School-management-system-api.git
+
+
+Testing endpoints example :
+
+Add School :-
+
+method : POST = https://school-management-system-6jeg.onrender.com/api/addSchool
+
+{
+  "name": "Green Valley High School",
+  "address": "123 Elm Street, Springfield",
+  "latitude": 40.73061,
+  "longitude": -73.935242
+}
+
+List School :-
+
+method : GET = https://school-management-system-6jeg.onrender.com/api/listSchools?latitude=40.73061&longitude=-73.935242
+
+
