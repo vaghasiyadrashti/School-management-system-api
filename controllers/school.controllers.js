@@ -1,4 +1,4 @@
-const { addSchool, listSchools, deleteSchool } = require('../models/school.models.js');
+const { addSchool, listSchools } = require('../models/school.models.js');
 const mySqlPool = require('../db.js');
 
 // Add a new school
